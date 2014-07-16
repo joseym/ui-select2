@@ -71,7 +71,14 @@ angular.module('ui.select2', []).value('uiSelect2Config', {}).directive('uiSelec
             angular.forEach(
               angular_data,
               function(value, index) {
-                model.push({'id': value, 'text': value});
+                if (typeof value.text !== 'undefined') {
+                  model.push({
+                    id: value.id,
+                    text: value.text
+                  });
+                } else {
+                  model.push(value);
+                }
               });
           } else {
             model = angular_data;
